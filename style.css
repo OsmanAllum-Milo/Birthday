@@ -1,0 +1,189 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #F7E7CE;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+}
+
+/* Envelope container */
+.envelope-container {
+  /* position: relative; */
+  cursor: pointer;
+  width: 400px;
+  height: 250px;
+  margin-top: 100px;
+  margin-bottom: 200px; 
+  perspective: 1000px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Envelope body */
+.envelope {
+  /* position: relative; */
+  width: 100%;
+  height: 100%;
+  background-color: #ffcccb;
+  border: 4px solid #ff6f61;
+  box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.6);
+  transform-style: preserve-3d;
+  transition: transform 2s;
+  border-radius: 2px;
+}
+
+/* Triangular flap with point facing downwards */
+.envelope .flap {
+  position: absolute;
+  top: -3px;
+  left: -4px;
+  width: 0;
+  height: 0;
+  border-left: 200px solid transparent;
+  border-right: 200px solid transparent;
+  border-top: 150px solid #ff6f61;
+
+  transform-origin: top; /* Open from the top */
+  transform: rotateX(0deg);
+  transition: transform 2s;
+  z-index: 2;
+  backface-visibility: visible; /* Ensure the back of the flap is visible during rotation */
+}
+
+.envelope.open .flap {
+  transform: rotateX(180deg); /* Open upwards towards the viewer */
+}
+
+/* Envelope body (rectangle under flap) */
+.envelope .body {
+  width: 100%;
+  height: 100%;
+  background-color: #ffcccb;
+}
+
+
+.envelope .letterMessage {
+  margin-top: 40px; 
+  font-size: 1em;
+  color: #ff6f61;
+  text-align: center;
+}
+
+/* Hidden message container */
+.message-container {
+  display: none;
+  text-align: center;
+  border: 2px solid black;
+  background-color: #e4d3b8;
+  padding: 20px;
+  max-width: 500px;
+  height: fit-content;
+}
+
+.message {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.messageHeader {
+  margin-bottom: 10px;
+}
+
+.messageBody {
+  text-align: left;
+}
+
+/* Balloons styles */
+.balloons {
+  position: relative;
+  height: 300px;
+}
+
+.balloon {
+  width: 60px;
+  height: 80px;
+  border-radius: 50%;
+  position: absolute;
+  /* animation: float-up 4s ease-out forwards */
+  animation: float 4s ease-in-out infinite;
+}
+
+.b1 {
+  background: radial-gradient(circle at 35% 35%, #ffcccb, #ff6f61);
+  left: 150%;
+  animation-delay: 0s;
+}
+
+.b2 {
+  background: radial-gradient(circle at 35% 35%, #87CEFA, #4682B4);
+  left: 175%;
+  animation-delay: 2s;
+}
+
+.b3 {
+  background: radial-gradient(circle at 35% 35%, #32CD32, #228B22);
+  left: 200%;
+  animation-delay: 4s;
+}
+
+.b4 {
+  background: radial-gradient(circle at 35% 35%, #ffcccb, #ff6f61);
+  right: 150%;
+  animation-delay: 0s;
+}
+
+.b5 {
+  background: radial-gradient(circle at 35% 35%, #87CEFA, #4682B4);
+  right: 175%;
+  animation-delay: 2s;
+}
+
+.b6 {
+  background: radial-gradient(circle at 35% 35%, #32CD32, #228B22);
+  right: 200%;
+  animation-delay: 4s;
+}
+
+.string {
+  width: 2px;
+  height: 100px;
+  background-color: #888;
+  position: absolute;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-50px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes float-up {
+  0% {
+    transform: translateY(400px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
